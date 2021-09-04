@@ -20,6 +20,11 @@ generateBtn.addEventListener("click", ()=> {
   var hasLower = window.confirm("Are lower case letters required?");
   var hasSymbol = window.confirm("Are special characters required?");
   var hasNumber = window.confirm("Are numbers required?");
+  console.log(hasUpper, hasLower, hasNumber, hasSymbol)
+  if (hasLower == false && hasNumber == false && hasSymbol == false && hasUpper == false){
+    window.alert("Please select atleast one character type.")
+    return
+  }
    console.log()
  passwordText = generatePassword(hasLower, hasUpper, hasSymbol, hasNumber, length)
  document.getElementById("password").placeholder=passwordText;
