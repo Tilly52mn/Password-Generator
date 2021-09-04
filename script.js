@@ -1,37 +1,33 @@
 // Assignment code here
-var PasswordFunction ={
+
+var passwordText = document.getElementById;("password");
+var passwordFunction = {
   lower: getLowerRandom,
   upper: getUpperRandom,
   number: getNumberRandom,
   symbol: getSymbolRandom
 }
-
-// Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function passwordChars() {
-
+generateBtn.addEventListener("click", ()=> {
   var length = prompt("length of desired password?");
  lenght =  parseInt(length)
  console.log(length)
   var hasUpper = window.confirm("Are capitol letters required?");
   var hasLower = window.confirm("Are lower case letters required?");
-  var hasSpecial = window.confirm("Are special characters required?");
+  var hasSymbol = window.confirm("Are special characters required?");
   var hasNumber = window.confirm("Are numbers required?");
    console.log()
- var passwordText = generatePassword(hasLower, hasUpper, hasSpecial, hasNumber, length)
-  
-  //var password = generatePassword();
-  //var passwordText = document.querySelector("#password");
- }
+ passwordText = generatePassword(hasLower, hasUpper, hasSymbol, hasNumber, length)
+ document.getElementById("password").placeholder=passwordText;
+})
 
- function generatePassword(upper, lower, special, number, length){
-var generatePassword= '';
-var typesLength = upper + lower + special + number;
+
+ function generatePassword(upper, lower, symbol, number, length){
+var generatedPassword= '';
+var typesLength = upper + lower + symbol + number;
 console.log('typesLength', typesLength);
 
-var typesArray = [{upper},{lower},{special},{number}].filter(item => Object.values(item)[0])
+var typesArray = [{upper},{lower},{symbol},{number}].filter(item => Object.values(item)[0])
 console.log(typesArray)
 
 if(typesLength === 0){
@@ -40,19 +36,18 @@ if(typesLength === 0){
 console.log(typesLength)
 console.log(length)
 for(let i =0; i < length; i+=typesLength){
+
   typesArray.forEach(type =>{
 var  passName = Object.keys(type)[0];
 console.log('passName', passName)
 
-generatePassword += passwordFunction[passName]();   
-  });
+generatedPassword += passwordFunction[passName]();
+ });
 }
+console.log(generatedPassword.slice(0,length))
+var passwordText = generatedPassword.slice(0,length)
+return passwordText
  }
-
-//passwordText.value = password;
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", passwordChars())
 
 
 function getLowerRandom(){
@@ -64,8 +59,7 @@ function getUpperRandom(){
 function getNumberRandom(){
   return String.fromCharCode((Math.floor(Math.random()*10+48)));
 }
-
 function getSymbolRandom(){
-  const symbols = '!"#$&()*+,-./:;><?@[]^_`{}|~'
+  const symbols = '!#$&()*+,-./:;><?@[]^_`{}|~'
   return symbols[Math.floor(Math.random() * symbols.length)]
 }
