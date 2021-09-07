@@ -10,7 +10,7 @@ var passwordFunction = {
 var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", ()=> {
   var length = prompt("length of desired password?");
-   lenght =  parseInt(length)
+  lenght =  parseInt(length)
   if(length<8 || length>128){
     window.alert("Please enter a number larger than 8 but smaller than 128")
     return
